@@ -1,0 +1,469 @@
+/* ============================================================
+   Стартовая страница «Выпрямись» — навигация по трём продуктам.
+
+   Палитра и типографика сняты замерами с club.dimafivex.ru
+   (getComputedStyle по живой странице, а не на глаз):
+     фон      #FFFCF2   синий  #134DBE   розовый CTA #EC83DB
+     бежевый  #EDE7D7   зелёный маркер   #027B58
+     текст    #1B1C21
+     кнопки radius 30px, карточки radius 10px
+     заголовки Benzin 500, текст Inter
+
+   Benzin — фирменный шрифт клуба, он платный и подключён на уровне их
+   сайта в Тильде. Если страница живёт там же, он подхватится сам; если
+   нет — падаем на Onest, ближайший бесплатный с кириллицей.
+   ============================================================ */
+
+:root {
+  --bg: #fffcf2;
+  --paper: #ffffff;
+  --beige: #ede7d7;
+  --blue: #134dbe;
+  --pink: #ec83db;
+  --green: #027b58;
+  --text: #1b1c21;
+  --muted: #5c5f66;      /* 6.6:1 на #fffcf2 — проходит AA */
+  --line: #e2ddd0;
+
+  --font-h: 'Benzin', 'Onest', 'Montserrat', Arial, sans-serif;
+  --font-b: 'Inter', Arial, sans-serif;
+
+  --radius-card: 10px;
+  --radius-tile: 24px;
+  --radius-pill: 30px;
+
+  --shadow-sm: 0 2px 10px rgba(19, 77, 190, .07);
+  --shadow-md: 0 14px 34px rgba(19, 77, 190, .16);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-b);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+.container { width: min(1160px, 100% - 48px); margin: 0 auto; }
+@media (max-width: 700px) { .container { width: min(1160px, 100% - 32px); } }
+
+/* Фон продублирован на секциях, а не только на body: страница поедет в
+   Тильду блоками, а там каждый блок сидит в своей обёртке с белым фоном
+   (эту грабельку уже ловили на летнем лагере). */
+.section {
+  padding: 84px 0;
+  background: var(--bg);
+}
+@media (max-width: 700px) { .section { padding: 56px 0; } }
+
+.h1, .h2 {
+  font-family: var(--font-h);
+  font-weight: 500;
+  color: var(--blue);
+  line-height: 1.14;
+  letter-spacing: -.01em;
+  margin: 0;
+}
+.h1 { font-size: clamp(30px, 4.6vw, 58px); }
+.h2 { font-size: clamp(25px, 3.2vw, 40px); }
+.lead {
+  margin: 20px 0 0;
+  font-size: clamp(17px, 1.5vw, 20px);
+  line-height: 1.5;
+  color: var(--muted);
+  max-width: 64ch;
+}
+
+/* Зелёная плашка-выделение на слове — фирменный приём клуба */
+.mark {
+  background: var(--green);
+  color: #fff;
+  border-radius: var(--radius-pill);
+  padding: .06em .38em .12em;
+  white-space: nowrap;
+}
+
+/* ---------------- КНОПКИ ---------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--font-b);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.2;
+  text-decoration: none;
+  padding: 17px 32px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background .2s, color .2s, border-color .2s, transform .15s;
+}
+.btn--primary { background: var(--pink); color: #fff; }
+.btn--outline { background: transparent; color: var(--blue); border-color: var(--blue); }
+.btn--beige   { background: var(--beige); color: var(--text); }
+@media (hover: hover) {
+  .btn:hover { transform: translateY(-2px); }
+  .btn--primary:hover { background: #e46ed2; }
+  .btn--outline:hover { background: var(--blue); color: #fff; }
+  .btn--beige:hover { background: #e3dbc7; }
+}
+.btn:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+
+/* ---------------- ШАПКА ---------------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(255, 252, 242, .92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.header__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+}
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.logo__mark {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: #fff;
+  font-family: var(--font-h);
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: .06em;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  line-height: 1.05;
+}
+.logo__text {
+  font-family: var(--font-h);
+  font-weight: 500;
+  font-size: 17px;
+  letter-spacing: .01em;
+  color: var(--blue);
+}
+.header .btn { padding: 12px 22px; font-size: 15px; }
+@media (max-width: 640px) {
+  .logo__text { display: none; }
+  .header .btn { padding: 11px 18px; font-size: 14px; }
+}
+
+/* ---------------- ПЕРВЫЙ ЭКРАН ---------------- */
+.hero { padding: 76px 0 64px; background: var(--bg); }
+.hero__title { max-width: 20ch; }
+.hero__lead { margin-top: 24px; }
+.hero__actions {
+  display: flex; flex-wrap: wrap; gap: 14px;
+  margin-top: 36px;
+}
+/* Три мини-подсказки: сразу видно, что на странице три продукта */
+.hero__hints {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 52px;
+}
+.hero__hint {
+  background: var(--beige);
+  border-radius: var(--radius-card);
+  padding: 18px 20px;
+  font-size: 15px;
+  line-height: 1.4;
+}
+.hero__hint b {
+  display: block;
+  font-family: var(--font-h);
+  font-weight: 500;
+  font-size: 17px;
+  color: var(--blue);
+  margin-bottom: 6px;
+}
+@media (max-width: 860px) {
+  .hero { padding: 48px 0 40px; }
+  .hero__hints { grid-template-columns: minmax(0, 1fr); gap: 10px; margin-top: 36px; }
+}
+
+/* ---------------- ПРОДУКТ ---------------- */
+.product + .product { padding-top: 0; }
+.product__card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-tile);
+  padding: 44px;
+  box-shadow: var(--shadow-sm);
+}
+.product__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px 16px;
+}
+.product__name {
+  font-family: var(--font-h);
+  font-weight: 500;
+  font-size: clamp(22px, 2.4vw, 32px);
+  line-height: 1.15;
+  color: var(--blue);
+  margin: 0;
+}
+.product__tag {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--green);
+  background: rgba(2, 123, 88, .1);
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+}
+.product__sub {
+  margin: 14px 0 0;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--muted);
+  max-width: 70ch;
+}
+.product__for {
+  margin: 30px 0 0;
+  font-family: var(--font-h);
+  font-weight: 500;
+  font-size: 17px;
+  color: var(--text);
+}
+.checks { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 12px; }
+.checks li {
+  position: relative;
+  padding-left: 34px;
+  font-size: 16px;
+  line-height: 1.45;
+}
+/* Галочка нарисована на CSS, а не иконкой: одним элементом меньше грузить */
+.checks li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 3px;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--blue);
+}
+.checks li::after {
+  content: "";
+  position: absolute;
+  left: 6px; top: 9px;
+  width: 8px; height: 4px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(-45deg);
+}
+.product__actions { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; }
+@media (max-width: 700px) {
+  .product__card { padding: 26px 20px; border-radius: 16px; }
+  .product__sub { font-size: 16px; }
+}
+
+/* ---------------- ПЛАШКИ ИНТЕНСИВОВ ----------------
+   Пять кликабельных карточек, каждая ведёт на свой сайт. По ТЗ при
+   наведении плашка «чуть выдвигается» — поднимаем на 6px и добавляем
+   тень; сдвиг маленький, чтобы соседние карточки не казались дрожащими. */
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+}
+.tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 168px;
+  padding: 22px;
+  background: var(--blue);
+  color: #fff;
+  border-radius: var(--radius-tile);
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+}
+.tile__name {
+  font-family: var(--font-h);
+  font-weight: 500;
+  font-size: clamp(19px, 1.9vw, 24px);
+  line-height: 1.15;
+  letter-spacing: -.005em;
+}
+.tile__meta {
+  margin-top: 14px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, .84);
+}
+.tile__go {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+}
+.tile__go svg { transition: transform .22s ease; }
+@media (hover: hover) {
+  .tile:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); background: #1a58d4; }
+  .tile:hover .tile__go svg { transform: translateX(4px); }
+}
+.tile:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
+/* Пилатес ещё в разработке: карточка не ссылка, а заглушка — поэтому
+   приглушена и не реагирует на наведение, чтобы не обещать переход. */
+.tile--soon {
+  background: var(--beige);
+  color: var(--text);
+  cursor: default;
+}
+.tile--soon .tile__meta { color: var(--muted); }
+.tile--soon .tile__badge {
+  align-self: flex-start;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  background: var(--blue);
+  color: #fff;
+  border-radius: var(--radius-pill);
+  padding: 5px 12px;
+  margin-top: 18px;
+}
+@media (max-width: 900px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .tiles { grid-template-columns: minmax(0, 1fr); gap: 12px; } }
+
+/* ---------------- ВОПРОСЫ ---------------- */
+.faq { margin-top: 34px; display: grid; gap: 12px; }
+.faq__item {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+.faq__q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  background: none;
+  border: 0;
+  text-align: left;
+  font-family: var(--font-b);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+}
+.faq__q:focus-visible { outline: 3px solid var(--blue); outline-offset: -3px; }
+.faq__sign {
+  flex: none;
+  width: 26px; height: 26px;
+  position: relative;
+  border-radius: 50%;
+  background: var(--blue);
+  transition: transform .22s ease;
+}
+.faq__sign::before, .faq__sign::after {
+  content: "";
+  position: absolute;
+  left: 50%; top: 50%;
+  background: #fff;
+  transform: translate(-50%, -50%);
+}
+.faq__sign::before { width: 11px; height: 2px; }
+.faq__sign::after  { width: 2px; height: 11px; transition: opacity .22s ease; }
+.faq__item.is-open .faq__sign { transform: rotate(180deg); }
+.faq__item.is-open .faq__sign::after { opacity: 0; }
+/* Высоту анимируем по max-height, а конкретное значение выставляет JS из
+   реальной высоты ответа. Модный приём с grid-template-rows: 0fr -> 1fr
+   короче, но проверка показала, что не во всех движках `1fr` при auto-высоте
+   контейнера разворачивается — ответ остаётся нулевой высоты и аккордеон
+   выглядит сломанным. Здесь запас не угадывается, поэтому длинные тексты
+   не обрезаются. */
+.faq__a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .28s ease;
+}
+/* Раскрытие держится на КЛАССЕ, а не только на inline-стиле из JS: если
+   скрипт не выполнился (ошибка, блокировщик, старый браузер), ответы всё
+   равно открываются — просто без плавности. Точное значение высоты JS
+   ставит поверх, оно перебивает этот запас. */
+.faq__item.is-open .faq__a { max-height: 1500px; }
+.faq__a p {
+  margin: 0;
+  padding: 0 24px 22px;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+/* ---------------- ФИНАЛ ---------------- */
+.final { background: var(--bg); padding-bottom: 96px; }
+.final__card {
+  background: var(--blue);
+  color: #fff;
+  border-radius: var(--radius-tile);
+  padding: 54px 48px;
+  text-align: center;
+}
+.final__title {
+  font-family: var(--font-h);
+  font-weight: 500;
+  font-size: clamp(23px, 2.7vw, 34px);
+  line-height: 1.2;
+  margin: 0 auto;
+  max-width: 26ch;
+}
+.final__text {
+  margin: 18px auto 0;
+  max-width: 56ch;
+  font-size: 17px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, .86);
+}
+.final .btn--primary { margin-top: 30px; }
+@media (max-width: 700px) { .final__card { padding: 34px 22px; } }
+
+/* ---------------- ПОДВАЛ ---------------- */
+.footer {
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+  padding: 28px 0 40px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.footer__row { display: flex; flex-wrap: wrap; gap: 10px 26px; align-items: center; justify-content: space-between; }
+.footer a { color: var(--muted); }
+
+/* ---------------- ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ ---------------- */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+  .btn, .tile { transition: none; }
+}

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Выпрямись — бот, интенсивы и клуб для здоровья спины</title>
+  <meta name="description" content="Верните спине комфорт и правильную осанку без изнуряющих тренировок. Бот с 5-минутными разминками, интенсивы по зонам спины и онлайн-клуб «Выпрямись» — выберите подходящий формат." />
+  <meta property="og:title" content="Выпрямись — выберите свой формат тренировок" />
+  <meta property="og:description" content="Бот с 5-минутными разминками, интенсивы по зонам спины и онлайн-клуб. Помогаем вернуть спине комфорт без изнуряющих тренировок." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Onest — запасной вариант вместо фирменного Benzin: он платный и живёт
+       в настройках сайта клуба. На их Тильде подхватится родной. -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Onest:wght@500;600&display=swap&subset=latin,cyrillic" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=vyp-D" />
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- ШАПКА                                                        -->
+<!-- ============================================================ -->
+<header class="header">
+  <div class="container header__row">
+    <a class="logo" href="#top">
+      <span class="logo__mark" aria-hidden="true">В<br />П<br />Р</span>
+      <span class="logo__text">Выпрямись</span>
+    </a>
+    <a class="btn btn--outline" href="#help" data-goal="vyp-header-help">Задать вопрос</a>
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- 1. ПЕРВЫЙ ЭКРАН                                              -->
+<!-- ============================================================ -->
+<section class="hero" id="top">
+  <div class="container">
+    <h1 class="h1 hero__title">Верните спине комфорт и&nbsp;правильную <span class="mark">осанку</span> без изнуряющих тренировок</h1>
+    <p class="lead hero__lead">Онлайн-тренировки и&nbsp;понятная траектория: от&nbsp;первых ощущений лёгкости до&nbsp;устойчивого результата.</p>
+
+    <div class="hero__actions">
+      <a class="btn btn--primary" href="#programs" data-goal="vyp-hero-cta">Подобрать программу</a>
+      <a class="btn btn--beige" href="#help" data-goal="vyp-hero-help">Получить консультацию</a>
+    </div>
+
+    <!-- Три подсказки = три продукта ниже. Человек сразу видит развилку,
+         а не листает вслепую. -->
+    <div class="hero__hints">
+      <div class="hero__hint"><b>Бот «Выпрямись»</b>5-минутные разминки каждый день</div>
+      <div class="hero__hint"><b>Интенсивы</b>7 тренировок на конкретную зону спины</div>
+      <div class="hero__hint"><b>Клуб «Выпрямись»</b>Всё в одном месте и поддержка чата</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 2. КАК ПОДОБРАТЬ ПРОГРАММУ — заголовок раздела               -->
+<!-- ============================================================ -->
+<section class="section" id="programs">
+  <div class="container reveal">
+    <h2 class="h2">Как подобрать программу?</h2>
+    <p class="lead">Три формата под разное количество времени и&nbsp;разные задачи. Выберите тот, что ближе к&nbsp;вашей ситуации&nbsp;— и&nbsp;начните с&nbsp;него.</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 3. ПРОДУКТ: БОТ                                              -->
+<!-- ============================================================ -->
+<section class="section product" id="bot">
+  <div class="container reveal">
+    <article class="product__card">
+      <div class="product__head">
+        <h3 class="product__name">Бот «ВЫПРЯМИСЬ»</h3>
+        <span class="product__tag">5 минут в день</span>
+      </div>
+      <p class="product__sub">5-минутные разминки для здоровья спины и&nbsp;осанки в&nbsp;формате бота.</p>
+
+      <p class="product__for">Для тех, кто:</p>
+      <ul class="checks">
+        <li>много работает сидя, хочет поддержать здоровье спины и&nbsp;ощущать лёгкость в&nbsp;течение дня</li>
+        <li>хочет ввести привычку регулярно заниматься, но&nbsp;никак не&nbsp;получается</li>
+        <li>готов выделить только 5–7&nbsp;минут на&nbsp;тренировку, потому что нет времени</li>
+        <li>хочет начать заниматься, но&nbsp;не&nbsp;знает, с&nbsp;чего начать</li>
+      </ul>
+
+      <div class="product__actions">
+        <!-- TODO: ссылка на бота — в ТЗ её не было, поставлена заглушка -->
+        <a class="btn btn--primary" href="#" data-goal="vyp-bot-cta">Бот «ВЫПРЯМИСЬ»</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 4. ПРОДУКТ: ИНТЕНСИВЫ + 5 ПЛАШЕК                             -->
+<!-- ============================================================ -->
+<section class="section product" id="intensives">
+  <div class="container reveal">
+    <article class="product__card">
+      <div class="product__head">
+        <h3 class="product__name">Интенсивы «Выпрямись»</h3>
+        <span class="product__tag">7 тренировок · 15–25 минут</span>
+      </div>
+      <p class="product__sub">Формат из&nbsp;7&nbsp;тренировок до&nbsp;25&nbsp;минут, направленных на&nbsp;работу с&nbsp;конкретным регионом спины.</p>
+
+      <p class="product__for">Для тех, кто:</p>
+      <ul class="checks">
+        <li>имеет боли и&nbsp;дискомфорт в&nbsp;шее, грудном отделе, пояснице, тазу <b>(1&nbsp;интенсив = 1&nbsp;зона)</b></li>
+        <li>хочет полноценную систему тренировок под запрос и&nbsp;не&nbsp;знает, с&nbsp;чего начать, чтоб не&nbsp;навредить</li>
+        <li>готов выделять 15–25&nbsp;минут на&nbsp;занятия «между делами», чтобы тренироваться комплексно</li>
+      </ul>
+
+      <!-- Каждая плашка ведёт на свой сайт. Пилатес пока без ссылки —
+           сделан заглушкой, чтобы не вести в никуда. -->
+      <div class="tiles">
+        <a class="tile" href="https://club.dimafivex.ru/neck" target="_blank" rel="noopener" data-goal="vyp-tile-neck">
+          <span class="tile__name">здоровая шея</span>
+          <span>
+            <span class="tile__meta">Шея и воротниковая зона</span>
+            <span class="tile__go">Перейти
+              <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg>
+            </span>
+          </span>
+        </a>
+
+        <a class="tile" href="https://club.dimafivex.ru/antislouch/" target="_blank" rel="noopener" data-goal="vyp-tile-antislouch">
+          <span class="tile__name">антисутулость</span>
+          <span>
+            <span class="tile__meta">Грудной отдел и осанка</span>
+            <span class="tile__go">Перейти
+              <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg>
+            </span>
+          </span>
+        </a>
+
+        <a class="tile" href="https://club.dimafivex.ru/lowbacknew" target="_blank" rel="noopener" data-goal="vyp-tile-lowback">
+          <span class="tile__name">здоровая поясница</span>
+          <span>
+            <span class="tile__meta">Поясница и низ спины</span>
+            <span class="tile__go">Перейти
+              <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg>
+            </span>
+          </span>
+        </a>
+
+        <a class="tile" href="https://club.dimafivex.ru/hipjoint" target="_blank" rel="noopener" data-goal="vyp-tile-hipjoint">
+          <span class="tile__name">ягодицы и ТБС</span>
+          <span>
+            <span class="tile__meta">Таз и тазобедренные суставы</span>
+            <span class="tile__go">Перейти
+              <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg>
+            </span>
+          </span>
+        </a>
+
+        <div class="tile tile--soon">
+          <span class="tile__name">лёгкий пилатес</span>
+          <span>
+            <span class="tile__meta">Мягкая работа со всем телом</span>
+            <span class="tile__badge">Скоро</span>
+          </span>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 5. ПРОДУКТ: КЛУБ                                             -->
+<!-- ============================================================ -->
+<section class="section product" id="club">
+  <div class="container reveal">
+    <article class="product__card">
+      <div class="product__head">
+        <h3 class="product__name">Клуб «ВЫПРЯМИСЬ»</h3>
+        <span class="product__tag">Всё в одном месте</span>
+      </div>
+      <p class="product__sub">Онлайн-клуб с&nbsp;разнообразными тренировками для дома, которые дают результат.</p>
+
+      <p class="product__for">Для тех, кто:</p>
+      <ul class="checks">
+        <li>готов на&nbsp;длительный формат тренировок и&nbsp;занятий</li>
+        <li>хочет подобрать тренировку под запрос: когда нет времени&nbsp;— на&nbsp;5&nbsp;минут, когда есть время&nbsp;— на&nbsp;20–25&nbsp;минут</li>
+        <li>имеет цель комплексно работать со&nbsp;всем телом: убрать боли, укрепить спину, подтянуть тело</li>
+        <li>хочет разнообразные программы в&nbsp;одном месте</li>
+        <li>хочет быть в&nbsp;сообществе (чате) и&nbsp;получать поддержку и&nbsp;мотивацию</li>
+      </ul>
+
+      <div class="product__actions">
+        <a class="btn btn--primary" href="https://club.dimafivex.ru/" target="_blank" rel="noopener" data-goal="vyp-club-cta">Клуб «ВЫПРЯМИСЬ»</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 6. ВОПРОСЫ — взяты с основного сайта клуба                   -->
+<!-- ============================================================ -->
+<section class="section" id="faq">
+  <div class="container reveal">
+    <h2 class="h2">Частые вопросы</h2>
+
+    <div class="faq">
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">Какие есть противопоказания к&nbsp;тренировкам?<span class="faq__sign" aria-hidden="true"></span></button>
+        <div class="faq__a"><div><p>Острый период любых заболеваний. Острые фазы грыж, протрузий, воспалений. При возможных противопоказаниях проконсультируйтесь с&nbsp;врачом.</p></div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">Что нужно из&nbsp;оборудования?<span class="faq__sign" aria-hidden="true"></span></button>
+        <div class="faq__a"><div><p>Для большинства тренировок оборудование не&nbsp;нужно. В&nbsp;курсах для продвинутых понадобится коврик, массажный ролл, фитнес-резина и&nbsp;теннисный мяч.</p></div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">Сколько длятся тренировки?<span class="faq__sign" aria-hidden="true"></span></button>
+        <div class="faq__a"><div><p>Есть тренировки от&nbsp;1,5 до&nbsp;35&nbsp;минут. Вы&nbsp;можете выбирать длительность по&nbsp;своей занятости.</p></div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">Сколько действует абонемент?<span class="faq__sign" aria-hidden="true"></span></button>
+        <div class="faq__a"><div><p>Абонемент действует со&nbsp;дня покупки в&nbsp;течение того времени, на&nbsp;которое вы&nbsp;его приобретаете. То&nbsp;есть если вы&nbsp;покупаете абонемент на&nbsp;1&nbsp;месяц, он&nbsp;будет действовать 30&nbsp;дней со&nbsp;дня покупки.</p></div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">На&nbsp;какой срок будет доступ к&nbsp;тренировкам?<span class="faq__sign" aria-hidden="true"></span></button>
+        <div class="faq__a"><div><p>Доступ к&nbsp;тренировкам открыт, пока действует абонемент. По&nbsp;окончании абонемента, чтобы продолжать тренироваться, нужно продлить доступ.</p></div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">Тренировки проходят онлайн или в&nbsp;записи?<span class="faq__sign" aria-hidden="true"></span></button>
+        <div class="faq__a"><div><p>Все тренировки в&nbsp;записи, их&nbsp;можно смотреть в&nbsp;любое время.</p></div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">На&nbsp;какой платформе тренировки?<span class="faq__sign" aria-hidden="true"></span></button>
+        <div class="faq__a"><div><p>Тренировки хранятся в&nbsp;личном кабинете на&nbsp;платформе GetCourse. Смотреть можно на&nbsp;любых устройствах: от&nbsp;телефона до&nbsp;телевизора. Для удобства можно скачать приложение GetCourse.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 7. ФИНАЛ — консультация куратора                             -->
+<!-- ============================================================ -->
+<section class="section final" id="help">
+  <div class="container reveal">
+    <div class="final__card">
+      <h2 class="final__title">Не&nbsp;уверены, какой формат ваш?</h2>
+      <p class="final__text">Если вы&nbsp;сомневаетесь по&nbsp;формату или есть другие вопросы, напишите нам&nbsp;— и&nbsp;куратор проекта поможет вам разобраться.</p>
+      <a class="btn btn--primary" href="https://max.ru/u/f9LHodD0cOLsgLHI5aFkynmQFtVDv8Yk8kyyWLTi-7oDXXItbJp_HIFZlRE" target="_blank" rel="noopener" data-goal="vyp-consult">Получить консультацию</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer__row">
+    <span>«Выпрямись» — тренировки для здоровья спины и осанки</span>
+    <a href="https://club.dimafivex.ru/" target="_blank" rel="noopener">club.dimafivex.ru</a>
+  </div>
+</footer>
+
+<script src="script.js?v=vyp-D"></script>
+</body>
+</html>
