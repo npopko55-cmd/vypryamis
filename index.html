@@ -14,7 +14,7 @@
   <!-- Onest — запасной вариант вместо фирменного Benzin: он платный и живёт
        в настройках сайта клуба. На их Тильде подхватится родной. -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Onest:wght@500;600&display=swap&subset=latin,cyrillic" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=vyp-E" />
+  <link rel="stylesheet" href="styles.css?v=vyp-F" />
 </head>
 <body>
 
@@ -70,9 +70,10 @@
         <li>хочет начать заниматься, но&nbsp;не&nbsp;знает, с&nbsp;чего начать</li>
       </ul>
 
+      <p class="product__note">Тренировки в&nbsp;Боте «Выпрямись» можно получать в&nbsp;удобном мессенджере: ВКонтакте или Телеграм.</p>
+
       <div class="product__actions">
-        <!-- TODO: ссылка на бота — в ТЗ её не было, поставлена заглушка -->
-        <a class="btn btn--primary" href="#" data-goal="vyp-bot-cta">Бот «ВЫПРЯМИСЬ»</a>
+        <a class="btn btn--primary" href="https://club.dimafivex.ru/antislouchnew" target="_blank" rel="noopener" data-goal="vyp-bot-cta">Бот «ВЫПРЯМИСЬ»</a>
       </div>
     </article>
   </div>
@@ -117,7 +118,7 @@
           </span>
         </a>
 
-        <a class="tile" href="https://club.dimafivex.ru/lowbacknew" target="_blank" rel="noopener" data-goal="vyp-tile-lowback">
+        <a class="tile" href="https://club.dimafivex.ru/lowback" target="_blank" rel="noopener" data-goal="vyp-tile-lowback">
           <span class="tile__cover">здоровая поясница</span>
           <span class="tile__meta">
             <span class="tile__row"><svg viewBox="0 0 20 20" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12.5c1.8-2.4 3.4-3.6 4.8-3.6 2.1 0 2.3 3.2 4.4 3.2 1.4 0 3-1.2 4.8-3.6"/></svg>7 тренировок</span>
@@ -135,12 +136,16 @@
           </span>
         </a>
 
-        <div class="tile tile--soon">
+        <!-- Пилатес: адрес из ТЗ, но страница на нём пока отдаёт 404 —
+             оставляем бирку «Скоро», чтобы человек не думал, что сломалось. -->
+        <a class="tile tile--soon" href="https://club.dimafivex.ru/pilates" target="_blank" rel="noopener" data-goal="vyp-tile-pilates">
           <span class="tile__cover">лёгкий пилатес<span class="tile__badge">Скоро</span></span>
           <span class="tile__meta">
-            <span class="tile__row tile__row--soon">Ссылка появится позже</span>
+            <span class="tile__row"><svg viewBox="0 0 20 20" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12.5c1.8-2.4 3.4-3.6 4.8-3.6 2.1 0 2.3 3.2 4.4 3.2 1.4 0 3-1.2 4.8-3.6"/></svg>7 тренировок</span>
+            <span class="tile__row"><svg viewBox="0 0 20 20" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7.2"/><path d="M10 6v4.3l2.8 1.7"/></svg>15–25 минут</span>
+            <span class="tile__row"><svg viewBox="0 0 20 20" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15.5V12M9.4 15.5V8M14.8 15.5V4.5"/></svg>Сложность: лёгкая-средняя</span>
           </span>
-        </div>
+        </a>
       </div>
     </article>
   </div>
@@ -199,7 +204,7 @@
       </div>
       <div class="faq__item">
         <button class="faq__q" type="button" aria-expanded="false">На&nbsp;какой срок будет доступ к&nbsp;тренировкам?<span class="faq__sign" aria-hidden="true"></span></button>
-        <div class="faq__a"><div><p>Доступ к&nbsp;тренировкам открыт, пока действует абонемент. По&nbsp;окончании абонемента, чтобы продолжать тренироваться, нужно продлить доступ.</p></div></div>
+        <div class="faq__a"><div><p>Доступ к&nbsp;тренировкам клуба открыт на&nbsp;срок действия абонемента. По&nbsp;окончании абонемента его нужно продлить, чтобы продолжить тренироваться и&nbsp;далее.<br />Доступ к&nbsp;интенсивам сохраняется на&nbsp;срок 60&nbsp;дней с&nbsp;момента оплаты.</p></div></div>
       </div>
       <div class="faq__item">
         <button class="faq__q" type="button" aria-expanded="false">Тренировки проходят онлайн или в&nbsp;записи?<span class="faq__sign" aria-hidden="true"></span></button>
@@ -233,6 +238,6 @@
   </div>
 </footer>
 
-<script src="script.js?v=vyp-E"></script>
+<script src="script.js?v=vyp-F"></script>
 </body>
 </html>
