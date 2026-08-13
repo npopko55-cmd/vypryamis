@@ -108,12 +108,10 @@ a { color: inherit; }
 }
 .btn--primary { background: var(--pink); color: #fff; }
 .btn--outline { background: transparent; color: var(--blue); border-color: var(--blue); }
-.btn--beige   { background: var(--beige); color: var(--text); }
 @media (hover: hover) {
   .btn:hover { transform: translateY(-2px); }
   .btn--primary:hover { background: #e46ed2; }
   .btn--outline:hover { background: var(--blue); color: #fff; }
-  .btn--beige:hover { background: #e3dbc7; }
 }
 .btn:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
 
@@ -311,24 +309,6 @@ a { color: inherit; }
   .tile:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
 }
 .tile:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
-/* Пилатес ещё в разработке: не ссылка, поэтому и не реагирует на наведение —
-   иначе карточка обещала бы переход, которого нет. */
-.tile--soon { cursor: default; }
-.tile--soon .tile__cover { background: #8fa6d4; }
-.tile__badge {
-  position: absolute;
-  top: 10px; right: 10px;
-  font-family: var(--font-b);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: .05em;
-  text-transform: uppercase;
-  background: #fff;
-  color: var(--blue);
-  border-radius: var(--radius-pill);
-  padding: 4px 10px;
-}
-.tile__row--soon { color: var(--muted); }
 @media (max-width: 900px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .tiles { grid-template-columns: minmax(0, 1fr); gap: 14px; } }
 
