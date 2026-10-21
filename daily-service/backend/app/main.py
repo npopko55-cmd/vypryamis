@@ -360,10 +360,16 @@ def stats(admin=Depends(admin_user), db: Session = Depends(get_db)):
     repeat_users = {uid for (uid, day), count in launch_counts.items() if count > 1}
     lesson_map = {l.id: l for l in db.scalars(select(Lesson))}
     started = {e.user_id for e in events if e.type == "video_start" and e.lesson_id in lesson_map and lesson_map[e.lesson_id].kind == "short" and lesson_map[e.lesson_id].cycle_number == 1 and lesson_map[e.lesson_id].day == 1}
+    paid_base_counts = Counter(o.user_id for o in paid if o.product == "base")
+    paid_renewals = {uid for uid, count in paid_base_counts.items() if count > 1}
+    full_conversion = round(len(full & purchases)*100/len(purchases), 1) if purchases else 0
+    renewal_conversion = round(len(paid_renewals)*100/len(purchases), 1) if purchases else 0
+    completed_first = Counter(p.user_id for p in db.scalars(select(Progress).where(Progress.user_id.in_(ids), Progress.completed_at.is_not(None))) if p.lesson_id in lesson_map and lesson_map[p.lesson_id].kind == "short" and lesson_map[p.lesson_id].cycle_number == 1)
+    finished_21 = len([uid for uid, count in completed_first.items() if count >= 21])
     daily = {}
     for e in events:
         if e.type == "visit": daily.setdefault(e.local_day.isoformat(), set()).add(e.user_id)
-    return {"users": len(users), "buyers": len(purchases), "started": len(started & set(first)), "renewals": len(renewals), "full_buyers": len(full), "full_trials": len({e.user_id for e in events if e.type == "full_trial"}), "revenue": sum(o.amount for o in paid), "average_completed": round(len(completions)/len(first), 1) if first else 0, "retention": cohort, "daily": [{"date": d, "visits": len(v)} for d, v in sorted(daily.items())][-30:], "unique_30_days": len({e.user_id for e in events if e.type == "visit" and e.created_at >= now() - timedelta(days=30)}), "repeat_users": len(repeat_users)}
+    return {"finished_21": finished_21, "full_conversion": full_conversion, "renewal_conversion": renewal_conversion, "started_rate": round(len(started & purchases)*100/len(purchases), 1) if purchases else 0, "users": len(users), "buyers": len(purchases), "started": len(started & set(first)), "renewals": len(renewals), "full_buyers": len(full), "full_trials": len({e.user_id for e in events if e.type == "full_trial"}), "revenue": sum(o.amount for o in paid), "average_completed": round(len(completions)/len(first), 1) if first else 0, "retention": cohort, "daily": [{"date": d, "visits": len(v)} for d, v in sorted(daily.items())][-30:], "unique_30_days": len({e.user_id for e in events if e.type == "visit" and e.created_at >= now() - timedelta(days=30)}), "repeat_users": len(repeat_users)}
 
 
 @app.get("/api/admin/users")
