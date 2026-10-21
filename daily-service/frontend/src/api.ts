@@ -1,3 +1,4 @@
+import {STATIC_PREVIEW} from './preview';
 let token = '';
 let refreshing: Promise<boolean> | null = null;
 export function setToken(value: string) { token = value; }
@@ -12,6 +13,7 @@ async function renew() {
   return refreshing;
 }
 export async function api<T=any>(path: string, options: RequestInit = {}, retry=true): Promise<T> {
+  if (STATIC_PREVIEW) throw new ApiError('Это превью. Действие будет доступно после подключения сервера.',503);
   const headers = new Headers(options.headers);
   if (options.body) headers.set('Content-Type','application/json');
   if (token) headers.set('Authorization','Bearer '+token);
