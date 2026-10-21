@@ -1,0 +1,17 @@
+{$SITE_HOST:localhost} {
+    encode zstd gzip
+    header {
+        X-Content-Type-Options nosniff
+        Referrer-Policy no-referrer
+        X-Frame-Options DENY
+        Content-Security-Policy "default-src 'self'; script-src 'self' https://player.kinescope.io; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src https://kinescope.io https://*.kinescope.io https://kinescope.ru https://*.kinescope.ru; connect-src 'self' https://*.kinescope.io; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+    }
+    handle /api/* {
+        reverse_proxy api:8000
+    }
+    handle {
+        root * /srv
+        try_files {path} /index.html
+        file_server
+    }
+}

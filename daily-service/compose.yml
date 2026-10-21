@@ -1,0 +1,52 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: vypryamis
+      POSTGRES_DB: vypryamis
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}
+    volumes: [database:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vypryamis"]
+      interval: 5s
+      retries: 20
+    restart: unless-stopped
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes", "--maxmemory-policy", "noeviction"]
+    volumes: [redisdata:/data]
+    restart: unless-stopped
+  api:
+    build: ./backend
+    env_file: .env
+    environment: {ENVIRONMENT: production}
+    depends_on:
+      db: {condition: service_healthy}
+      redis: {condition: service_started}
+    restart: unless-stopped
+  worker:
+    build: ./backend
+    env_file: .env
+    environment: {ENVIRONMENT: production}
+    command: ["celery", "-A", "app.tasks.celery", "worker", "--loglevel=info", "--concurrency=2"]
+    depends_on: [api]
+    restart: unless-stopped
+  beat:
+    build: ./backend
+    env_file: .env
+    environment: {ENVIRONMENT: production}
+    command: ["celery", "-A", "app.tasks.celery", "beat", "--loglevel=info", "--schedule=/tmp/celerybeat-schedule"]
+    depends_on: [api]
+    restart: unless-stopped
+  web:
+    build: ./frontend
+    environment: {SITE_HOST: '${SITE_HOST:?Set SITE_HOST}'}
+    ports: ["80:80", "443:443"]
+    volumes: [caddydata:/data, caddyconfig:/config]
+    depends_on: [api]
+    restart: unless-stopped
+volumes:
+  database:
+  redisdata:
+  caddydata:
+  caddyconfig:
